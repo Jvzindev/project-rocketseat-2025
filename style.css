@@ -8,14 +8,35 @@
   box-sizing: border-box;
 }
 
+/* Todo conteúdo que eu usar essa variavel, vai usar branco agora */
+:root {
+  --text-color: white;
+  --bg-url: url(./imgs/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-color-hover: rgba(255, 255, 255, 0.02);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(imgs/moon-starts.svg);
+}
+
+.light {
+  --text-color: black;
+  --bg-url: url(./imgs/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(imgs/sun.svg);
+}
+
 body {
-  background-image: url(./imgs/bg-mobile.jpg);
+  background-image: var(--bg-url);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
 }
 body * {
-  color: #fff;
+  color: var(--text-color);
   font-family: "Inter", sans-serif;
 }
 /* Da para fazer assim: */
@@ -24,22 +45,127 @@ body * {
   background: url(./imgs/bg-mobile.jpg) no-repeat top center/cover;
 } */
 
+/* Caixa principal */
 #container {
   width: 360px;
-  margin: 56px auto 0;
+  margin: 56px auto 0px;
+  padding: 0 24px;
 }
 
+/* Caixa de perfil */
 #profile {
   text-align: center;
   padding: 24px;
 }
 
+/* Imagem do perfil */
 #profile img {
   width: 112px;
 }
 
+/* Texto do perfil - ${nome_do_usuario} */
 #profile p {
   font-weight: 500;
   line-height: 24px;
   margin-top: 8px;
+}
+
+/* Botão Light/Dark */
+
+#switch {
+  position: relative;
+  width: 64px;
+  margin: 4px auto;
+}
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  background-image: var(--switch-bg-url);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.light #switch button {
+  left: initial;
+  right: 0;
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 999px;
+}
+
+/* links - listas */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+}
+ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+  -webkit-backdrop-filter: blur(4px);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+/* pseudo-selector */
+ul li a:hover {
+  background-color: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+
+/* social links */
+#social-links {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+  font-size: 24px;
+}
+
+#social-links a {
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+#social-links a:hover {
+  background-color: var(--highlight-color);
+}
+
+footer {
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+footer a {
+  transition: color 0.2s;
+}
+footer a:hover {
+  color: blueviolet;
 }
